@@ -1,76 +1,100 @@
-# 🎬 React + Vite + TMDB | Aplicación de Películas
+🎬 React + Vite + TMDB | Aplicación de Películas
+Este proyecto es una aplicación web desarrollada con React y Vite, que consume datos en tiempo real desde la API pública de The Movie Database (TMDB).
+Permite explorar películas populares, visualizar sinopsis, puntuaciones, y disfrutar de una interfaz moderna, responsiva y dinámica.
 
-Este proyecto es una aplicación web desarrollada con **React + Vite**, que consume datos de **The Movie Database (TMDB)** mediante su API pública.  
-Permite explorar películas populares, visualizar detalles como sinopsis y puntuaciones, e interactuar con una interfaz moderna, responsiva y dinámica.
+Además, incorpora documentación visual con Storybook, validación de código con ESLint, y una arquitectura modular y escalable.
 
-También incluye documentación visual de los componentes mediante **Storybook**, y utiliza **ESLint** para validar la calidad del código.
+⚙️ Tecnologías utilizadas
+Tecnología Descripción
+⚛ React Biblioteca para construir interfaces de usuario.
+⚡ Vite Empaquetador rápido y moderno para desarrollo frontend.
+🎨 Tailwind Framework de utilidad para estilos rápidos y responsivos.
+📚 Storybook Visualización interactiva de componentes en aislamiento.
+🎞 TMDB API Fuente externa para obtener datos actualizados de películas.
+📡 Axios Cliente HTTP para manejar llamadas a la API.
+🔍 ESLint Validación automática de buenas prácticas de desarrollo.
 
----
+🚀 ¿Cómo correr la aplicación?
+Cloná el repositorio:
 
-## ⚙️ Tecnologías principales
+bash
+Copiar
+Editar
+git clone https://github.com/ironhack00/challengeTMDB.git && cd challengeTMDB
+Instalá las dependencias:
 
-- **React** – Librería para construir interfaces de usuario.
-- **Vite** – Empaquetador rápido y moderno.
-- **Tailwind CSS** – Framework de utilidad para estilos rápidos y consistentes.
-- **Storybook** – Documentación visual de componentes en forma aislada.
-- **TMDB API** – Provee información actualizada de películas.
-- **ESLint** – Asegura buenas prácticas de código.
-- **Axios** – Para llamadas HTTP.
+bash
+Copiar
+Editar
+npm install
+Configurá el entorno:
 
----
+Creá un archivo .env en la raíz del proyecto con el siguiente contenido:
 
-## 🚀 Cómo correr la aplicación
+env
+Copiar
+Editar
+VITE_API_KEY=TU_API_KEY
+language=es-ES
+VITE_API_BASE_URL=https://api.themoviedb.org/3
+VITE_IMG_BASE=https://image.tmdb.org/t/p/w500
+Ejecutá la app:
 
-1. Cloná el repositorio desde GitHub https://github.com/ironhack00/challengeTMDB.git y accedé a la raíz del proyecto.  
-   `cd challengeTMDB`
+bash
+Copiar
+Editar
+npm run dev
+Luego, accedé en http://localhost:5173.
 
-2. Instalá las dependencias con:  
-   `npm install`
+📚 Documentación con Storybook
+Este proyecto incluye una documentación interactiva de componentes utilizando Storybook.
+Para iniciarla:
 
-3. Creá un archivo `.env` en la raíz del proyecto con las siguientes variables:
+bash
+Copiar
+Editar
+npm run storybook
+Abrí tu navegador en http://localhost:6006.
 
-   - `VITE_API_KEY`
-   - `language=es-ES`
-   - `VITE_API_BASE_URL=https://api.themoviedb.org/3`
-   - `VITE_IMG_BASE=https://image.tmdb.org/t/p/w500`
+📜 Scripts disponibles
+Comando Descripción
+npm run dev Inicia el servidor de desarrollo (Vite).
+npm run build Genera la build de producción.
+npm run preview Previsualiza la build localmente.
+npm run lint Ejecuta ESLint para validar el código.
+npm run storybook Inicia Storybook para visualizar componentes.
+npm run build-storybook Genera una build estática de Storybook.
 
-4. Ejecutá la app con:  
-   `npm run dev`  
-   Accedé en `http://localhost:5173`.
+🌟 Características destacadas
+🦴 Skeleton loaders con retardo simulado:
+Algunos componentes usan setTimeout para mostrar placeholders de carga antes del contenido final, mejorando la experiencia del usuario.
 
----
+🎠 Carouseles diferenciados:
+Un componente permite scroll infinito, mientras que otro tiene límite de scroll, ofreciendo variedad en la navegación.
 
-## 📚 Documentación con Storybook
+🖼️ Imágenes dinámicas:
+Rotación automática cada 5 o 7 segundos, dependiendo del componente, generando dinamismo visual.
 
-Este proyecto incluye documentación visual de componentes con **Storybook**.  
-Podés iniciarlo con `npm run storybook`, y estará disponible por defecto en `http://localhost:6006`.
+🧠 Hooks personalizados:
+Separación entre lógica de negocio y presentación para mejorar la organización del código.
 
----
+🔀 Ordenamiento dinámico:
+Posibilidad de ordenar películas por estrenos más recientes o más antiguos.
 
-## ✅ Scripts disponibles
+💡 Buenas prácticas implementadas
+📦 Arquitectura modular con clara separación de responsabilidades (UI vs lógica).
 
-| Comando                 | Descripción                             |
-| ----------------------- | --------------------------------------- |
-| npm run dev             | Inicia el servidor de desarrollo (Vite) |
-| npm run build           | Genera la build de producción           |
-| npm run preview         | Previsualiza la build localmente        |
-| npm run lint            | Ejecuta ESLint sobre todo el proyecto   |
-| npm run storybook       | Inicia la documentación de componentes  |
-| npm run build-storybook | Genera la build de Storybook            |
+✅ Validación con ESLint para mantener un código limpio y coherente.
 
----
+💅 Estilos adaptativos y consistentes gracias a Tailwind.
 
-## 💡 Características destacadas
+🧩 Componentes reutilizables con nombres semánticos y profesionales.
 
-- **Skeleton loaders**: varios componentes cuentan con carga esquelética para mejorar la experiencia de usuario.
-- **Carouseles diferenciados**: uno de los carouseles tiene scroll infinito, mientras que otro es limitado.
-- **Imágenes dinámicas**: cambian automáticamente cada 5 o 7 segundos según el componente.
-- **Hooks personalizados**: separamos lógica de la UI para mejorar escalabilidad y mantenibilidad.
-- **Ordenamiento**: la aplicación permite ordenar las películas por estrenos más nuevos y también por los más antiguos.
+📁 Organización del código orientada a escalabilidad y mantenibilidad.
 
----
+📎 Repositorio
+👉 https://github.com/ironhack00/challengeTMDB
 
-## 🙌 Nota final
-
-> Espero que encuentren valor en este proyecto, tanto en su presentación visual como en la arquitectura y organización del código.  
-> ¡Muchas gracias por tomarse el tiempo para explorarlo!
+🙌 Nota final
+Espero que encuentren valor en este proyecto, tanto en su presentación visual como en su arquitectura, buenas prácticas y organización del código.
+¡Muchas gracias por tomarse el tiempo para explorarlo! Estoy disponible para explicar cada parte técnica si es necesario.
