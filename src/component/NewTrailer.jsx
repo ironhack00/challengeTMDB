@@ -1,57 +1,14 @@
-import { useState, useEffect, useRef, useMemo } from "react";
 import Card from "./UI/Card";
 import { useFetchMovies } from "../hook/useFetchMovies";
 import { fetchNewMovies } from "../api/tmdb";
+import { useTrailerSlider } from "../hook/useNewTrailer";
 
 export default function NewTrailer() {
   const { movies, loading, error } = useFetchMovies(fetchNewMovies);
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [isHovered, setIsHovered] = useState(false);
-  const [isNewest, setIsNewest] = useState(true);
-  const [fade, setFade] = useState(true); // true = visible (opacity 1), false = hidden (opacity 0)
-  const intervalRef = useRef(null);
-  const step = 2;
+  const { visibleMovies, fade, toggleSort, isNewest, setHovered } =
+    useTrailerSlider(movies, 2);
 
-  const sortedMovies = useMemo(() => {
-    if (!movies) return [];
-    return [...movies].sort((a, b) => {
-      const dateA = new Date(a.release_date);
-      const dateB = new Date(b.release_date);
-      return isNewest ? dateB - dateA : dateA - dateB;
-    });
-  }, [movies, isNewest]);
-
-  const totalMovies = sortedMovies.length;
-
-  // Auto-slide con fade effect
-  useEffect(() => {
-    if (!isHovered && totalMovies > 0) {
-      intervalRef.current = setInterval(() => {
-        // Primero fade out
-        setFade(false);
-        // Luego, después de la transición, cambiar índice y fade in
-        setTimeout(() => {
-          setCurrentIndex((prevIndex) => (prevIndex + step) % totalMovies);
-          setFade(true);
-        }, 500); // tiempo igual a la duración del fade en CSS
-      }, 7000);
-    }
-
-    return () => {
-      if (intervalRef.current) clearInterval(intervalRef.current);
-    };
-  }, [isHovered, totalMovies]);
-
-  // Resetear índice cuando cambia el orden y fade in
-  useEffect(() => {
-    setFade(false);
-    const timeout = setTimeout(() => {
-      setCurrentIndex(0);
-      setFade(true);
-    }, 500);
-
-    return () => clearTimeout(timeout);
-  }, [isNewest]);
+  const IMG_BASE = import.meta.env.VITE_IMG_BASE;
 
   if (loading) {
     return <p className="text-white px-4 py-2">Cargando trailers...</p>;
@@ -64,12 +21,6 @@ export default function NewTrailer() {
       </p>
     );
   }
-
-  const visibleMovies = sortedMovies.slice(currentIndex, currentIndex + step);
-
-  const toggleSort = () => {
-    setIsNewest((prev) => !prev);
-  };
 
   return (
     <section className="w-full flex flex-col items-center px-4 py-8 bg-black">
@@ -96,8 +47,8 @@ export default function NewTrailer() {
         className={`w-full max-w-6xl flex flex-col gap-8 items-center justify-center transition-opacity duration-500 ${
           fade ? "opacity-100" : "opacity-0"
         }`}
-        onMouseEnter={() => setIsHovered(true)}
-        onMouseLeave={() => setIsHovered(false)}
+        onMouseEnter={() => setHovered(true)}
+        onMouseLeave={() => setHovered(false)}
       >
         {visibleMovies.length > 0 ? (
           visibleMovies.map((movie) => (
@@ -107,7 +58,7 @@ export default function NewTrailer() {
             >
               <Card
                 title={movie.title}
-                image={`https://image.tmdb.org/t/p/w500${movie.backdrop_path}`}
+                image={`${IMG_BASE}${movie.backdrop_path}`}
               />
             </div>
           ))
