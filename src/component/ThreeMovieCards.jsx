@@ -56,12 +56,6 @@ export default function ThreeMovieCards() {
               </div>
             ))}
       </div>
-
-      {error && (
-        <div className="text-red-500 mt-4 text-sm text-center">
-          Error: {error}
-        </div>
-      )}
     </div>
   );
 }
