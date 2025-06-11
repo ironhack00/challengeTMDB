@@ -97,16 +97,17 @@ export default function NavBar() {
       </button>
 
       {/* Left navigation - horizontal menu on md+, hidden on small if not open */}
+      {/* Left navigation - horizontal menu on md+, hidden on small if not open */}
       <ul
         className={`
-          flex flex-col sm:flex-row gap-4 sm:gap-6 md:gap-8 flex-1
-          ${isMenuOpen ? "block" : "hidden"} sm:flex
-          bg-black sm:bg-transparent
-          absolute sm:static top-full left-0 w-full sm:w-auto
-          border-t border-gray-700 sm:border-0
-          z-50
-          px-4 sm:px-0 py-4 sm:py-0
-        `}
+    flex flex-col sm:flex-row gap-4 sm:gap-6 md:gap-8 flex-1 justify-center
+    ${isMenuOpen ? "block" : "hidden"} sm:flex
+    bg-black sm:bg-transparent
+    absolute sm:static top-full left-0 w-full sm:w-auto
+    border-t border-gray-700 sm:border-0
+    z-50
+    px-4 sm:px-0 py-4 sm:py-0
+  `}
         onClick={() => setIsMenuOpen(false)} // Close menu on item click
       >
         {NAV_LINKS.map(({ label, to }, index) => (
@@ -131,7 +132,7 @@ export default function NavBar() {
       </ul>
 
       {/* Right side icons */}
-      <ul className="flex items-center gap-4 sm:gap-6 flex-shrink-0">
+      <ul className="flex items-center gap-4 sm:gap-6 flex-shrink-0 flex-1 justify-end pr-8">
         {NAV_ICONS.map(({ icon, key, isImage, to }, i) => {
           const index = NAV_LINKS.length + i;
           return (
