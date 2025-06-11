@@ -33,7 +33,7 @@ Además, incluye:
 ### 1. Clonar el repositorio
 
 git clone https://github.com/ironhack00/challengeTMDB.git
-cd challenge
+cd challengeTMDB
 
 2. Instalar dependencias
    npm install
